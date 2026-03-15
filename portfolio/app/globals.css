@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme - High contrast colors */
+    --background: 255 255 255; /* #ffffff */
+    --foreground: 26 26 26; /* #1a1a1a - Very dark for maximum contrast */
+    --card: 250 250 250; /* #fafafa */
+    --card-foreground: 26 26 26; /* #1a1a1a */
+    --primary: 59 130 246; /* #3b82f6 - Blue */
+    --primary-foreground: 255 255 255; /* #ffffff */
+    --muted: 243 244 246; /* #f3f4f6 */
+    --border: 229 231 235; /* #e5e7eb */
+    --accent: 99 102 241; /* #6366f1 - Indigo */
+  }
+
+  .dark {
+    /* Dark theme */
+    --background: 15 23 42; /* #0f172a */
+    --foreground: 248 250 252; /* #f8fafc */
+    --card: 30 41 59; /* #1e293b */
+    --card-foreground: 248 250 252; /* #f8fafc */
+    --primary: 96 165 250; /* #60a5fa - Lighter blue for dark mode */
+    --primary-foreground: 15 23 42; /* #0f172a */
+    --muted: 51 65 85; /* #334155 */
+    --border: 51 65 85; /* #334155 */
+    --accent: 129 140 248; /* #818cf8 - Lighter indigo */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--muted));
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--primary));
+}
