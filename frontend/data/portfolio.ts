@@ -1,18 +1,10 @@
-import { FaLinkedin, FaGithub, FaCode } from 'react-icons/fa';
-import { 
-  SiJavascript, SiTypescript, SiPython, SiJava, SiCplusplus,
-  SiReact, SiNextdotjs, SiTailwindcss, SiHtml5, SiCss3,
-  SiNodedotjs, SiExpress, SiDjango, SiSpringboot,
-  SiPostgresql, SiMongodb, SiRedis, SiMysql,
-  SiGit, SiDocker, SiAmazonaws, SiVercel, SiPostman
-} from 'react-icons/si';
 import { PortfolioData } from '@/types';
 
 export const portfolioData: PortfolioData = {
   personal: {
     name: 'Maedot Alemu',
-    title: 'Software Engineering Student',
-    description: 'Passionate software engineering student at Addis Ababa University with hands-on experience in full-stack development, cloud technologies, and building scalable applications. Focused on creating accessible, performant, and user-friendly solutions.',
+    title: 'Software Engineer | Full Stack Developer',
+    description: 'Passionate software engineer with hands-on experience in full-stack development, cloud technologies, and building scalable applications. Focused on creating accessible, performant, and user-friendly solutions.',
     email: 'alemu.maedot@gmail.com',
     phone: '+251911660356',
     location: 'Addis Ababa, Ethiopia',
@@ -20,17 +12,17 @@ export const portfolioData: PortfolioData = {
       {
         platform: 'LinkedIn',
         url: 'https://linkedin.com/in/maedot-alemu',
-        icon: FaLinkedin,
+        icon: 'FaLinkedin',
       },
       {
         platform: 'GitHub',
         url: 'https://github.com/maedot-alemu',
-        icon: FaGithub,
+        icon: 'FaGithub',
       },
       {
         platform: 'LeetCode',
         url: 'https://leetcode.com/maedot-alemu',
-        icon: FaCode,
+        icon: 'FaCode',
       },
     ],
   },
@@ -39,10 +31,11 @@ export const portfolioData: PortfolioData = {
     {
       id: 'exp-1',
       company: 'Eskalate',
-      role: 'Software Engineering Intern',
+      role: 'Frontend Developer',
       duration: 'Jun 2024 - Present',
       startDate: '2024-06-01',
       endDate: 'Present',
+      companyUrl: 'https://www.eskalate.io/',
       responsibilities: [
         'Developed and maintained full-stack web applications using modern frameworks',
         'Collaborated with cross-functional teams to deliver high-quality software solutions',
@@ -58,6 +51,7 @@ export const portfolioData: PortfolioData = {
       duration: 'Jan 2024 - May 2024',
       startDate: '2024-01-01',
       endDate: '2024-05-31',
+      companyUrl: 'https://etmsoftwareplc.com/',
       responsibilities: [
         'Built RESTful APIs and integrated third-party services',
         'Worked on database design and optimization for improved query performance',
@@ -69,10 +63,11 @@ export const portfolioData: PortfolioData = {
     {
       id: 'exp-3',
       company: 'A Plus Online Tutors',
-      role: 'Software Engineering Intern',
+      role: 'Mentor and advisor',
       duration: 'Aug 2023 - Dec 2023',
       startDate: '2023-08-01',
       endDate: '2023-12-31',
+      companyUrl: 'https://www.aplusonlinetutors.com/',
       responsibilities: [
         'Developed educational platform features for online tutoring',
         'Created interactive user interfaces for student-teacher interactions',
@@ -82,12 +77,29 @@ export const portfolioData: PortfolioData = {
       technologies: ['React', 'JavaScript', 'MongoDB', 'Socket.io'],
     },
     {
+      id: 'exp-5',
+      company: 'Revelo',
+      role: 'AI Trainer',
+      duration: 'Jun 2025 - Dec 2025',
+      startDate: '2025-06-01',
+      endDate: '2025-12-31',
+      location: 'Miami, Florida',
+      companyUrl: 'https://app.labeler.revelo.com/',
+      responsibilities: [
+        'Trained and fine-tuned AI models for practical applications, ensuring high accuracy and efficiency',
+        'Developed pipelines for data preprocessing, annotation, and model evaluation',
+        'Collaborated with cross-functional teams to deploy AI solutions for real-world use cases',
+      ],
+      technologies: ['AI Training', 'Data Preprocessing', 'Model Evaluation', 'Python'],
+    },
+    {
       id: 'exp-4',
       company: 'Cheche',
-      role: 'Software Engineering Intern',
+      role: 'Fullstack Developer',
       duration: 'Mar 2023 - Jul 2023',
       startDate: '2023-03-01',
       endDate: '2023-07-31',
+      companyUrl: 'https://cheche.com.et/',
       responsibilities: [
         'Assisted in developing web applications and features',
         'Learned software development best practices and design patterns',
@@ -100,34 +112,44 @@ export const portfolioData: PortfolioData = {
 
   projects: [
     {
+      id: 'proj-7',
+      name: 'Tickflows',
+      description: 'A secure role-based workflow and project management platform with full-stack implementation covering application submissions, review workflows, and real-time communication.',
+      duration: '2024-2025',
+      techStack: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'WebSockets'],
+      features: [
+        { description: 'Built frontend interfaces and backend APIs for application submissions and review workflows' },
+        { description: 'Implemented real-time chat enabling direct communication between reviewers and applicants' },
+        { description: 'Integrated AI chatbot to assist users with submission guidance and platform navigation' },
+        { description: 'Designed secure role-based access control (RBAC) for multi-tier user permissions' },
+      ],
+      liveUrl: 'http://tickflows.com/',
+    },
+    {
+      id: 'proj-8',
+      name: 'Transit Management Platform',
+      description: 'A full-stack web application for managing intercity and urban transit operations, designed to streamline transportation workflows through a centralized, scalable, and secure management system.',
+      duration: '2025',
+      techStack: ['Next.js 16', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Express', 'PostgreSQL'],
+      features: [
+        { description: 'Agency & station management with route and fare configuration' },
+        { description: 'Vehicle fleet tracking and terminal exit ticketing' },
+        { description: 'Finance settlement reporting with filterable PDF & Excel exports' },
+        { description: 'Role-based access control, real-time chat, and English/Amharic multilingual support' },
+      ],
+      liveUrl: 'https://transit.cheche.et/',
+    },
+    {
       id: 'proj-1',
       name: 'BuildCred',
       description: 'A comprehensive platform for managing construction projects with real-time collaboration, document management, and progress tracking. Built with modern web technologies focusing on performance, accessibility, and user experience.',
       duration: '2024',
       techStack: ['Next.js', 'TypeScript', 'React Context API', 'Tailwind CSS', 'PostgreSQL'],
       features: [
-        {
-          description: 'Comprehensive test coverage ensuring code quality and reliability',
-          metric: '80%+ test coverage',
-        },
-        {
-          description: 'Full accessibility compliance for inclusive user experience',
-          metric: 'WCAG 2.2 AA compliant',
-        },
-        {
-          description: 'Optimized performance with server-side rendering and static generation',
-          metric: '<2s load times',
-        },
-        {
-          description: 'Scalable architecture supporting concurrent users',
-          metric: '1,000+ concurrent users',
-        },
-        {
-          description: 'State management using React Context API for efficient data flow',
-        },
-        {
-          description: 'Server-side rendering (SSR) and static site generation (SSG) for optimal performance',
-        },
+        { description: 'Comprehensive test coverage ensuring code quality and reliability', metric: '80%+ test coverage' },
+        { description: 'Full accessibility compliance for inclusive user experience', metric: 'WCAG 2.2 AA compliant' },
+        { description: 'Optimized performance with server-side rendering and static generation', metric: '<2s load times' },
+        { description: 'Scalable architecture supporting concurrent users', metric: '1,000+ concurrent users' },
       ],
       githubUrl: 'https://github.com/maedot-alemu/buildcred',
       liveUrl: 'https://buildcred.vercel.app',
@@ -139,26 +161,79 @@ export const portfolioData: PortfolioData = {
       duration: '2023-2024',
       techStack: ['Node.js', 'Express', 'RabbitMQ', 'PostgreSQL', 'Docker', 'Redis'],
       features: [
-        {
-          description: 'Microservices architecture with independent user service',
-        },
-        {
-          description: 'Order management service for parcel tracking and status updates',
-        },
-        {
-          description: 'Payment service integration for secure transactions',
-        },
-        {
-          description: 'Real-time notification service using RabbitMQ message broker',
-        },
-        {
-          description: 'Event-driven communication between services for loose coupling',
-        },
-        {
-          description: 'Containerized deployment using Docker for consistency across environments',
-        },
+        { description: 'Microservices architecture with independent user, order, payment, and notification services' },
+        { description: 'Real-time notification service using RabbitMQ message broker' },
+        { description: 'Event-driven communication between services for loose coupling' },
+        { description: 'Containerized deployment using Docker for consistency across environments' },
       ],
-      githubUrl: 'https://github.com/maedot-alemu/parcel-delivery',
+      githubUrl: 'https://github.com/maedotamha/distributed-parcel-system',
+    },
+    {
+      id: 'proj-3',
+      name: 'NavAR',
+      description: 'A real-time, cross-platform AR wayfinding system with hybrid QR/Wi-Fi positioning, designed for seamless indoor navigation.',
+      duration: '2025-2026',
+      techStack: ['Unity', 'AR Foundation', 'Node.js', 'Express', 'PostgreSQL'],
+      features: [
+        { description: 'Architected hybrid QR/Wi-Fi positioning system achieving ~3m accuracy' },
+        { description: 'Engineered accessibility features including multilingual audio and high-contrast mode' },
+        { description: 'Built analytics dashboard with movement heatmaps, reducing navigation time by ~40%' },
+      ],
+      githubUrl: 'https://github.com/maedotamha/NavAr-Website',
+    },
+    {
+      id: 'proj-4',
+      name: 'DineQ',
+      description: 'A scalable PWA and mobile restaurant management system featuring Amharic/English OCR digitization for menus.',
+      duration: '2025',
+      techStack: ['Go', 'Gin', 'MongoDB', 'Next.js', 'NextAuth', 'OCR'],
+      features: [
+        { description: 'Led end-to-end system design supporting 6,000+ restaurants' },
+        { description: 'Built Amharic/English OCR pipeline to eliminate menu language barriers' },
+        { description: 'Reduced operational costs with on-demand QR menus and real-time updates' },
+        { description: 'Coordinated a 13-member team and implemented secure role-based access' },
+      ],
+      githubUrl: 'https://github.com/RealEskalate/G6-MenuMate',
+    },
+    {
+      id: 'proj-5',
+      name: 'Cam-Link',
+      description: 'A LAN-based streaming platform for real-time multi-camera feeds in low-infrastructure classrooms.',
+      duration: '2024',
+      techStack: ['Django', 'React', 'MongoDB', 'Caching', 'Concurrency'],
+      features: [
+        { description: 'Engineered platform supporting 10+ simultaneous camera inputs for classroom media sharing' },
+        { description: 'Developed high-performance modular React components for scalable streaming' },
+        { description: 'Achieved 1st place for improving learning accessibility in infrastructure-limited areas' },
+      ],
+      githubUrl: 'https://github.com/Abu388/CamLink',
+    },
+    {
+      id: 'proj-6',
+      name: 'Smart Farming System',
+      description: 'A distributed IoT platform automating greenhouse operations with sensor-driven actuator logic.',
+      duration: '2024-2025',
+      techStack: ['IoT', 'Node.js', 'Clean Architecture', 'Sensors', 'Automation'],
+      features: [
+        { description: 'Built platform collecting data from 12+ sensors for automated greenhouse operations' },
+        { description: 'Designed actuator logic maintaining 95% consistency in soil moisture and light' },
+        { description: 'Integrated weather forecasts for predictive remote farm management' },
+        { description: 'Architected modular API layer for scalable deployment across multiple farm zones' },
+      ],
+      githubUrl: 'https://github.com/maedotamha/Modern-Farming-Mechanism',
+    },
+    {
+      id: 'proj-9',
+      name: 'Travel Management System',
+      description: 'A full-stack travel management application for planning, booking, and managing travel itineraries with user authentication and trip tracking.',
+      duration: '2024',
+      techStack: ['React', 'Node.js', 'PostgreSQL', 'Express', 'TypeScript'],
+      features: [
+        { description: 'End-to-end travel itinerary planning and booking management' },
+        { description: 'User authentication with role-based access for travelers and admins' },
+        { description: 'Trip tracking and status management across multiple destinations' },
+      ],
+      githubUrl: 'https://github.com/meklitayele/Travel-Managment-System',
     },
   ],
 
@@ -166,49 +241,54 @@ export const portfolioData: PortfolioData = {
     {
       category: 'Languages',
       skills: [
-        { name: 'JavaScript', icon: SiJavascript },
-        { name: 'TypeScript', icon: SiTypescript },
-        { name: 'Python', icon: SiPython },
-        { name: 'Java', icon: SiJava },
-        { name: 'C++', icon: SiCplusplus },
+        { name: 'JavaScript', icon: 'SiJavascript' },
+        { name: 'TypeScript', icon: 'SiTypescript' },
+        { name: 'Python', icon: 'SiPython' },
+        { name: 'Go', icon: 'SiGo' },
+        { name: 'Java', icon: 'FaJava' },
+        { name: 'C++', icon: 'SiCplusplus' },
       ],
     },
     {
       category: 'Frontend',
       skills: [
-        { name: 'React', icon: SiReact },
-        { name: 'Next.js', icon: SiNextdotjs },
-        { name: 'Tailwind CSS', icon: SiTailwindcss },
-        { name: 'HTML5', icon: SiHtml5 },
-        { name: 'CSS3', icon: SiCss3 },
+        { name: 'React', icon: 'SiReact' },
+        { name: 'Next.js', icon: 'SiNextdotjs' },
+        { name: 'Tailwind CSS', icon: 'SiTailwindcss' },
+        { name: 'AR Foundation', icon: 'SiUnity' },
+        { name: 'Unity', icon: 'SiUnity' },
+        { name: 'HTML5', icon: 'SiHtml5' },
+        { name: 'CSS3', icon: 'SiCss' },
       ],
     },
     {
       category: 'Backend',
       skills: [
-        { name: 'Node.js', icon: SiNodedotjs },
-        { name: 'Express', icon: SiExpress },
-        { name: 'Django', icon: SiDjango },
-        { name: 'Spring Boot', icon: SiSpringboot },
+        { name: 'Node.js', icon: 'SiNodedotjs' },
+        { name: 'Express', icon: 'SiExpress' },
+        { name: 'Go (Gin)', icon: 'SiGo' },
+        { name: 'Django', icon: 'SiDjango' },
+        { name: 'Clean Architecture', icon: 'SiOpenarchitecture' },
       ],
     },
     {
-      category: 'Databases',
+      category: 'Databases & Infrastructure',
       skills: [
-        { name: 'PostgreSQL', icon: SiPostgresql },
-        { name: 'MongoDB', icon: SiMongodb },
-        { name: 'Redis', icon: SiRedis },
-        { name: 'MySQL', icon: SiMysql },
+        { name: 'PostgreSQL', icon: 'SiPostgresql' },
+        { name: 'MongoDB', icon: 'SiMongodb' },
+        { name: 'Redis', icon: 'SiRedis' },
+        { name: 'RabbitMQ', icon: 'SiRabbitmq' },
+        { name: 'Docker', icon: 'SiDocker' },
+        { name: 'AWS', icon: 'FaAws' },
       ],
     },
     {
-      category: 'Tools',
+      category: 'Specialized',
       skills: [
-        { name: 'Git', icon: SiGit },
-        { name: 'Docker', icon: SiDocker },
-        { name: 'AWS', icon: SiAmazonaws },
-        { name: 'Vercel', icon: SiVercel },
-        { name: 'Postman', icon: SiPostman },
+        { name: 'IoT & Sensors', icon: 'SiArduino' },
+        { name: 'AI Model Training', icon: 'SiOpenai' },
+        { name: 'OCR Digitization', icon: 'SiGooglecloud' },
+        { name: 'NextAuth / JWT', icon: 'SiJsonwebtokens' },
       ],
     },
   ],
@@ -219,6 +299,34 @@ export const portfolioData: PortfolioData = {
     field: 'Software Engineering',
     startDate: '2021',
     endDate: '2026',
-    gpa: '3.85/4.0',
+    gpa: '3.85 / 4.0',
   },
+
+  extraEducation: [
+    {
+      id: 'edu-2',
+      institution: 'A2SV — Africa to Silicon Valley',
+      program: 'Competitive Programming & Coding Academy',
+      period: '2022 — 2024',
+      description:
+        'Intensive competitive programming training focused on algorithmic problem-solving and software engineering excellence.',
+      tags: [
+        'Graph Algorithms',
+        'Tree Algorithms',
+        'Dynamic Programming',
+        'Advanced Data Structures',
+        'Advanced String Algorithms',
+      ],
+      url: 'https://www.a2sv.org/',
+    },
+    {
+      id: 'edu-3',
+      institution: 'TenX',
+      program: 'Machine Learning & AI Training',
+      period: '2024',
+      description:
+        'Hands-on training in machine learning fundamentals, model development, and AI application deployment.',
+      tags: ['Machine Learning', 'AI Training', 'Model Development', 'Python', 'Data Science'],
+    },
+  ],
 };

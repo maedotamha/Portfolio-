@@ -1,5 +1,6 @@
+'use client';
+
 import { Experience } from '@/types';
-import { Card } from '../Card';
 import { AnimatedSection } from '../AnimatedSection';
 
 interface ExperienceSectionProps {
@@ -7,53 +8,90 @@ interface ExperienceSectionProps {
 }
 
 export function ExperienceSection({ experiences }: ExperienceSectionProps) {
-  // Sort experiences by start date (most recent first)
-  const sortedExperiences = [...experiences].sort((a, b) => {
-    const dateA = a.endDate === 'Present' ? new Date() : new Date(a.endDate);
-    const dateB = b.endDate === 'Present' ? new Date() : new Date(b.endDate);
-    return dateB.getTime() - dateA.getTime();
+  const sorted = [...experiences].sort((a, b) => {
+    if (a.endDate.toLowerCase() === 'present') return -1;
+    if (b.endDate.toLowerCase() === 'present') return 1;
+    return new Date(b.startDate).getTime() - new Date(a.startDate).getTime();
   });
 
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/40 relative overflow-hidden">
+      {/* Background accent */}
+      <div
+        className="pointer-events-none absolute bottom-0 left-0 w-80 h-80 opacity-[0.06] dark:opacity-[0.04]"
+        style={{ background: 'radial-gradient(circle, rgb(var(--primary)) 0%, transparent 70%)' }}
+      />
+
+      <div className="max-w-4xl mx-auto relative z-10">
         <AnimatedSection animation="fadeIn">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-12 text-center">
-            Professional Experience
-          </h2>
+          <div className="flex items-center gap-3 mb-12">
+            <span className="section-num">02.</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">Experience</h2>
+            <div className="gradient-rule" />
+          </div>
         </AnimatedSection>
 
-        <div className="space-y-8">
-          {sortedExperiences.map((exp, index) => (
-            <AnimatedSection key={exp.id} animation="slideUp" delay={index * 0.1}>
-              <Card>
-                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                  <div>
-                    <h3 className="text-xl font-bold text-foreground">{exp.role}</h3>
-                    <p className="text-lg text-primary">{exp.company}</p>
+        {/* Timeline */}
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-primary/60 via-border to-transparent" />
+
+          <div className="space-y-6 pl-8">
+            {sorted.map((exp, index) => (
+              <AnimatedSection key={exp.id} animation="slideIn" delay={index * 0.08}>
+                <div className="relative">
+                  {/* Timeline dot */}
+                  <div className="absolute -left-[2.15rem] top-5 w-3 h-3 rounded-full bg-primary ring-4 ring-background shadow-sm" />
+
+                  <div className="glow-card p-6 md:p-7">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                      <div>
+                        <h3 className="text-lg font-bold text-foreground">{exp.role}</h3>
+                        {exp.companyUrl ? (
+                          <a
+                            href={exp.companyUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-primary font-semibold text-sm mt-0.5 hover:underline inline-flex items-center gap-1"
+                          >
+                            {exp.company}
+                            <svg className="w-3 h-3 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                          </a>
+                        ) : (
+                          <p className="text-primary font-semibold text-sm mt-0.5">{exp.company}</p>
+                        )}
+                      </div>
+                      <div className="shrink-0 text-right">
+                        <span className="inline-block px-3 py-1 rounded-full bg-primary/8 border border-primary/15 text-primary text-xs font-mono font-medium">
+                          {exp.duration}
+                        </span>
+                        {exp.location && (
+                          <p className="text-xs text-foreground/45 mt-1 font-mono">{exp.location}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    <ul className="space-y-2 mb-5">
+                      {exp.responsibilities.map((r, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-sm text-foreground/65 leading-relaxed">
+                          <span className="text-primary mt-1 shrink-0 text-xs">▸</span>
+                          {r}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {exp.technologies?.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 pt-4 border-t border-border">
+                        {exp.technologies.map((t) => (
+                          <span key={t} className="tech-tag">{t}</span>
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  <span className="text-muted mt-2 md:mt-0">{exp.duration}</span>
                 </div>
-
-                <ul className="list-disc list-inside space-y-2 mb-4 text-foreground/80">
-                  {exp.responsibilities.map((responsibility, idx) => (
-                    <li key={idx}>{responsibility}</li>
-                  ))}
-                </ul>
-
-                <div className="flex flex-wrap gap-2">
-                  {exp.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </Card>
-            </AnimatedSection>
-          ))}
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </div>
     </section>

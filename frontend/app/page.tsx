@@ -1,6 +1,7 @@
 import { portfolioData } from '@/data/portfolio';
 import { Navigation } from '@/components/Navigation';
 import { HeroSection } from '@/components/sections/HeroSection';
+import { AboutSection } from '@/components/sections/AboutSection';
 import { ExperienceSection } from '@/components/sections/ExperienceSection';
 import { ProjectsSection } from '@/components/sections/ProjectsSection';
 import { SkillsSection } from '@/components/sections/SkillsSection';
@@ -10,6 +11,7 @@ import { Footer } from '@/components/Footer';
 
 const navigationSections = [
   { id: 'hero', label: 'Home', href: '#hero' },
+  { id: 'about', label: 'About', href: '#about' },
   { id: 'experience', label: 'Experience', href: '#experience' },
   { id: 'projects', label: 'Projects', href: '#projects' },
   { id: 'skills', label: 'Skills', href: '#skills' },
@@ -23,10 +25,11 @@ export default function Home() {
       <Navigation sections={navigationSections} />
       <main>
         <HeroSection personal={portfolioData.personal} />
+        <AboutSection personal={portfolioData.personal} />
         <ExperienceSection experiences={portfolioData.experiences} />
         <ProjectsSection projects={portfolioData.projects} />
         <SkillsSection skillCategories={portfolioData.skills} />
-        <EducationSection education={portfolioData.education} />
+        <EducationSection education={portfolioData.education} extraEducation={portfolioData.extraEducation} />
         <ContactSection />
       </main>
       <Footer
