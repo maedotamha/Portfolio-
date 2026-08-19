@@ -18,6 +18,7 @@ export function AnimatedSection({
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- client-only mount gate, no SSR-safe alternative
     setIsClient(true);
   }, []);
 
@@ -46,7 +47,7 @@ export function AnimatedSection({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ duration: 0.7, delay, ease: [0.19, 1, 0.22, 1] }}
       variants={variants[animation]}
     >
       {children}

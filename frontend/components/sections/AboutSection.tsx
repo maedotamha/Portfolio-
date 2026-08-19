@@ -14,7 +14,7 @@ export function AboutSection({ personal }: AboutSectionProps) {
         <AnimatedSection animation="fadeIn">
           <div className="flex items-center gap-3 mb-12">
             <span className="section-num">01.</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">About Me</h2>
+            <h2 className="font-display text-3xl sm:text-4xl text-foreground">About Me</h2>
             <div className="gradient-rule" />
           </div>
         </AnimatedSection>
@@ -22,8 +22,8 @@ export function AboutSection({ personal }: AboutSectionProps) {
         <AnimatedSection animation="slideUp" delay={0.1}>
           <div className="glow-card p-8 md:p-10">
             {/* Decorative quote mark */}
-            <div className="text-6xl font-serif text-primary/15 leading-none mb-2 select-none">&ldquo;</div>
-            <p className="text-lg text-foreground/75 leading-relaxed">
+            <div className="font-display text-6xl text-primary/20 leading-none mb-2 select-none">&ldquo;</div>
+            <p className="text-lg text-fg-secondary leading-relaxed">
               {personal.description}
             </p>
           </div>

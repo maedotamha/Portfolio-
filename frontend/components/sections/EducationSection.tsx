@@ -1,25 +1,27 @@
-import { Education, ExtraEducation } from '@/types';
+import { Education, ExtraEducation, Achievement } from '@/types';
 import { AnimatedSection } from '../AnimatedSection';
-import { FiBook, FiAward, FiCpu } from 'react-icons/fi';
+import { IconType } from 'react-icons';
+import { FiBook, FiAward, FiCpu, FiStar } from 'react-icons/fi';
 
 interface EducationSectionProps {
   education: Education;
   extraEducation: ExtraEducation[];
+  achievements: Achievement[];
 }
 
-const extraIcons: Record<string, React.ElementType> = {
+const extraIcons: Record<string, IconType> = {
   'edu-2': FiAward,
   'edu-3': FiCpu,
 };
 
-export function EducationSection({ education, extraEducation }: EducationSectionProps) {
+export function EducationSection({ education, extraEducation, achievements }: EducationSectionProps) {
   return (
-    <section id="education" className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/40">
+    <section id="education" className="py-24 px-4 sm:px-6 lg:px-8 bg-subtle/40">
       <div className="max-w-4xl mx-auto">
         <AnimatedSection animation="fadeIn">
           <div className="flex items-center gap-3 mb-12">
             <span className="section-num">05.</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground">Education</h2>
+            <h2 className="font-display text-3xl sm:text-4xl text-foreground">Education</h2>
             <div className="gradient-rule" />
           </div>
         </AnimatedSection>
@@ -34,17 +36,17 @@ export function EducationSection({ education, extraEducation }: EducationSection
               <div className="flex-1 min-w-0">
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
                   <div>
-                    <h3 className="text-lg font-bold text-foreground">
+                    <h3 className="text-lg font-medium text-foreground">
                       {education.degree} in {education.field}
                     </h3>
-                    <p className="text-primary font-semibold text-sm mt-0.5">{education.institution}</p>
+                    <p className="text-primary font-medium text-sm mt-0.5">{education.institution}</p>
                   </div>
                   <span className="shrink-0 px-3 py-1 rounded-full bg-primary/8 border border-primary/15 text-primary font-mono text-xs self-start">
                     {education.startDate} — {education.endDate}
                   </span>
                 </div>
                 {education.gpa && (
-                  <span className="inline-block px-2.5 py-1 rounded-lg bg-muted border border-border text-foreground/65 font-semibold text-xs mt-1">
+                  <span className="inline-block px-2.5 py-1 rounded-lg bg-subtle border border-border text-fg-secondary font-medium text-xs mt-1">
                     GPA: {education.gpa}
                   </span>
                 )}
@@ -64,26 +66,27 @@ export function EducationSection({ education, extraEducation }: EducationSection
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-2">
                       <div>
-                        <h3 className="text-lg font-bold text-foreground">{entry.program}</h3>
+                        <h3 className="text-lg font-medium text-foreground">{entry.program}</h3>
                         {entry.url ? (
                           <a
                             href={entry.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-primary font-semibold text-sm mt-0.5 hover:underline inline-flex items-center gap-1"
+                            data-cursor="hover"
+                            className="text-primary font-medium text-sm mt-0.5 hover:underline inline-flex items-center gap-1"
                           >
                             {entry.institution}
                             <svg className="w-3 h-3 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                           </a>
                         ) : (
-                          <p className="text-primary font-semibold text-sm mt-0.5">{entry.institution}</p>
+                          <p className="text-primary font-medium text-sm mt-0.5">{entry.institution}</p>
                         )}
                       </div>
                       <span className="shrink-0 px-3 py-1 rounded-full bg-primary/8 border border-primary/15 text-primary font-mono text-xs self-start">
                         {entry.period}
                       </span>
                     </div>
-                    <p className="text-sm text-foreground/65 leading-relaxed mb-3">
+                    <p className="text-sm text-fg-secondary leading-relaxed mb-3">
                       {entry.description}
                     </p>
                     <div className="flex flex-wrap gap-1.5">
@@ -97,6 +100,29 @@ export function EducationSection({ education, extraEducation }: EducationSection
             );
           })}
         </div>
+
+        {/* Leadership & Achievements */}
+        {achievements.length > 0 && (
+          <AnimatedSection animation="fadeIn" delay={0.2}>
+            <div className="mt-8 pt-8 border-t border-border">
+              <div className="flex items-center gap-2 mb-5">
+                <FiStar className="w-3.5 h-3.5 text-primary" />
+                <h3 className="text-xs font-mono uppercase tracking-widest text-fg-secondary">
+                  Leadership &amp; Achievements
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+                {achievements.map((a) => (
+                  <div key={a.id} className="flex gap-2 text-sm">
+                    <span className="text-foreground font-medium shrink-0">{a.title}</span>
+                    <span className="text-fg-tertiary">—</span>
+                    <span className="text-fg-secondary leading-relaxed">{a.description}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </AnimatedSection>
+        )}
       </div>
     </section>
   );

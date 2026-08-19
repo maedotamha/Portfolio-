@@ -13,12 +13,37 @@ interface NavigationProps {
 export function Navigation({ sections }: NavigationProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeId, setActiveId] = useState('hero');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  useEffect(() => {
+    const elements = sections
+      .map((s) => document.getElementById(s.id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length > 0) {
+          const topMost = visible.reduce((a, b) =>
+            a.boundingClientRect.top < b.boundingClientRect.top ? a : b
+          );
+          setActiveId(topMost.target.id);
+        }
+      },
+      { rootMargin: '-15% 0px -70% 0px', threshold: 0 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [sections]);
 
   const handleNavClick = (sectionId: string) => {
     scrollToSection({ sectionId });
@@ -29,7 +54,7 @@ export function Navigation({ sections }: NavigationProps) {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-background/90 backdrop-blur-md border-b border-border/60 shadow-sm'
+          ? 'bg-background/80 backdrop-blur-md border-b border-border'
           : 'bg-transparent'
       }`}
     >
@@ -38,23 +63,32 @@ export function Navigation({ sections }: NavigationProps) {
           {/* Logo */}
           <button
             onClick={() => handleNavClick('hero')}
-            className="text-lg font-bold text-foreground hover:text-primary transition-colors focus:outline-none"
+            data-cursor="hover"
+            className="font-display text-lg font-medium text-foreground hover:text-primary transition-colors focus:outline-none"
           >
             Maedot<span className="text-primary">.</span>
           </button>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-1">
-            {sections.filter(s => s.id !== 'hero').map((section) => (
-              <button
-                key={section.id}
-                onClick={() => handleNavClick(section.id)}
-                className="px-4 py-2 text-sm text-foreground/60 hover:text-foreground rounded-lg hover:bg-muted
-                           transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-primary"
-              >
-                {section.label}
-              </button>
-            ))}
+            {sections.filter(s => s.id !== 'hero').map((section) => {
+              const isActive = activeId === section.id;
+              return (
+                <button
+                  key={section.id}
+                  onClick={() => handleNavClick(section.id)}
+                  data-cursor="hover"
+                  className={`relative px-4 py-2 text-sm font-mono transition-colors duration-150 focus:outline-none focus:ring-2 focus:ring-primary rounded-full ${
+                    isActive ? 'text-primary' : 'text-fg-secondary hover:text-foreground'
+                  }`}
+                >
+                  {section.label}
+                  {isActive && (
+                    <span className="absolute left-1/2 -translate-x-1/2 -bottom-0.5 w-1 h-1 rounded-full bg-primary" />
+                  )}
+                </button>
+              );
+            })}
             <div className="ml-3 pl-3 border-l border-border">
               <ThemeToggle />
             </div>
@@ -65,7 +99,7 @@ export function Navigation({ sections }: NavigationProps) {
             <ThemeToggle />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-foreground hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary"
+              className="p-2 rounded-lg text-foreground hover:bg-subtle focus:outline-none focus:ring-2 focus:ring-primary"
               aria-label="Toggle menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -83,8 +117,9 @@ export function Navigation({ sections }: NavigationProps) {
               <button
                 key={section.id}
                 onClick={() => handleNavClick(section.id)}
-                className="block w-full text-left px-4 py-2.5 text-sm text-foreground/70 hover:text-foreground
-                           hover:bg-muted rounded-xl transition-colors"
+                className={`block w-full text-left px-4 py-2.5 text-sm rounded-xl transition-colors font-mono ${
+                  activeId === section.id ? 'text-primary bg-subtle' : 'text-fg-secondary hover:text-foreground hover:bg-subtle'
+                }`}
               >
                 {section.label}
               </button>

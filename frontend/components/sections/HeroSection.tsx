@@ -4,6 +4,8 @@ import { PersonalInfo } from '@/types';
 import { motion, type Variants } from 'framer-motion';
 import { scrollToSection } from '@/lib/scroll-utils';
 import { getIcon } from '@/lib/icons';
+import { Button } from '@/components/Button';
+import { HeroScene } from '@/components/three/HeroScene';
 import { FiArrowDown, FiMail, FiMapPin } from 'react-icons/fi';
 
 interface HeroSectionProps {
@@ -12,56 +14,52 @@ interface HeroSectionProps {
 
 const container: Variants = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.09 } },
 };
 const item: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.19, 1, 0.22, 1] } },
 };
 
 export function HeroSection({ personal }: HeroSectionProps) {
+  const [firstName, ...rest] = personal.name.split(' ');
+  const lastName = rest.join(' ');
+
   return (
     <section
       id="hero"
-      className="hero-mesh relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-24 pb-16 overflow-hidden"
     >
-      {/* Decorative floating orbs */}
-      <div
-        className="pointer-events-none absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full float opacity-30 dark:opacity-20"
-        style={{ background: 'radial-gradient(circle, rgb(var(--orb-1)) 0%, transparent 70%)' }}
-      />
-      <div
-        className="pointer-events-none absolute -bottom-24 -left-24 w-[400px] h-[400px] rounded-full float-delay opacity-20 dark:opacity-15"
-        style={{ background: 'radial-gradient(circle, rgb(var(--orb-2)) 0%, transparent 70%)' }}
-      />
+      <HeroScene />
+      <div className="grain-overlay" />
+      <div className="pointer-events-none absolute inset-0 dot-grid opacity-40" />
 
-      {/* Dot grid overlay */}
-      <div className="pointer-events-none absolute inset-0 dot-grid opacity-[0.35] dark:opacity-[0.15]" />
-
-      <div className="max-w-4xl mx-auto w-full relative z-10">
+      <div className="max-w-5xl mx-auto w-full relative z-10">
         <motion.div variants={container} initial="hidden" animate="show">
 
           {/* Badge */}
-          <motion.div variants={item}>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full shimmer-badge border border-primary/20 text-primary text-sm font-medium mb-8">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <motion.div variants={item} className="mb-8">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border text-fg-secondary text-xs font-mono uppercase tracking-wider">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
               Open to opportunities
             </div>
           </motion.div>
 
-          {/* Name */}
+          {/* Name — big mixed serif/sans statement */}
           <motion.h1
             variants={item}
-            className="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight tracking-tight mb-4"
+            className="font-display leading-[0.95] tracking-tight mb-6"
+            style={{ fontSize: 'var(--text-hero)' }}
           >
-            <span className="text-foreground">{personal.name.split(' ')[0]} </span>
-            <span className="gradient-text">{personal.name.split(' ').slice(1).join(' ')}</span>
+            <span className="block text-foreground font-normal">{firstName}</span>
+            <span className="block gradient-text italic font-normal">{lastName}</span>
           </motion.h1>
 
           {/* Title */}
           <motion.p
             variants={item}
-            className="text-xl sm:text-2xl text-foreground/55 font-light mb-6 max-w-2xl"
+            className="font-mono text-fg-secondary uppercase tracking-wide mb-6 max-w-2xl"
+            style={{ fontSize: 'var(--text-sm)' }}
           >
             {personal.title}
           </motion.p>
@@ -69,7 +67,8 @@ export function HeroSection({ personal }: HeroSectionProps) {
           {/* Description */}
           <motion.p
             variants={item}
-            className="text-base sm:text-lg text-foreground/65 leading-relaxed mb-8 max-w-2xl"
+            className="text-fg-secondary leading-relaxed mb-8 max-w-2xl"
+            style={{ fontSize: 'var(--text-lg)' }}
           >
             {personal.description}
           </motion.p>
@@ -82,7 +81,7 @@ export function HeroSection({ personal }: HeroSectionProps) {
             ].map(({ icon: Icon, label }) => (
               <span
                 key={label}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-card border border-border text-sm text-foreground/60 shadow-sm"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border text-sm text-fg-secondary"
               >
                 <Icon className="w-3.5 h-3.5 text-primary" />
                 {label}
@@ -92,23 +91,12 @@ export function HeroSection({ personal }: HeroSectionProps) {
 
           {/* CTAs */}
           <motion.div variants={item} className="flex flex-wrap gap-4 mb-12">
-            <button
-              onClick={() => scrollToSection({ sectionId: 'projects' })}
-              className="group relative px-7 py-3 bg-primary text-primary-foreground font-semibold rounded-xl overflow-hidden
-                         hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 transition-all duration-200
-                         focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            >
-              <span className="relative z-10">View Projects</span>
-              <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            </button>
-            <button
-              onClick={() => scrollToSection({ sectionId: 'contact' })}
-              className="px-7 py-3 border border-border text-foreground font-semibold rounded-xl
-                         hover:bg-muted hover:border-primary/30 hover:-translate-y-0.5 transition-all duration-200
-                         focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            >
+            <Button onClick={() => scrollToSection({ sectionId: 'projects' })}>
+              View Projects
+            </Button>
+            <Button variant="outline" onClick={() => scrollToSection({ sectionId: 'contact' })}>
               Contact Me
-            </button>
+            </Button>
           </motion.div>
 
           {/* Social links */}
@@ -121,9 +109,10 @@ export function HeroSection({ personal }: HeroSectionProps) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center rounded-xl border border-border bg-card
-                             text-foreground/50 hover:text-primary hover:border-primary/50 hover:bg-primary/5
-                             hover:-translate-y-0.5 transition-all duration-200 shadow-sm
+                  data-cursor="hover"
+                  className="w-10 h-10 flex items-center justify-center rounded-full border border-border
+                             text-fg-secondary hover:text-primary hover:border-primary/50
+                             transition-all duration-200
                              focus:outline-none focus:ring-2 focus:ring-primary"
                   aria-label={link.platform}
                 >
@@ -138,16 +127,22 @@ export function HeroSection({ personal }: HeroSectionProps) {
 
       {/* Scroll cue */}
       <motion.button
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1
-                   text-foreground/30 hover:text-primary transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2
+                   text-fg-tertiary hover:text-primary transition-colors"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.4 }}
+        transition={{ delay: 1.3 }}
         onClick={() => scrollToSection({ sectionId: 'about' })}
         aria-label="Scroll down"
+        data-cursor="hover"
       >
         <span className="text-xs font-mono tracking-widest uppercase">scroll</span>
-        <FiArrowDown className="w-4 h-4 animate-bounce" />
+        <motion.span
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <FiArrowDown className="w-4 h-4" />
+        </motion.span>
       </motion.button>
     </section>
   );

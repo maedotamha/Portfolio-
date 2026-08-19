@@ -10,9 +10,9 @@ interface FooterProps {
 
 export function Footer({ socialLinks, email }: FooterProps) {
   return (
-    <footer className="border-t border-border py-8 px-4 sm:px-6 lg:px-8 bg-muted/20">
+    <footer className="border-t border-border py-8 px-4 sm:px-6 lg:px-8 bg-subtle/30">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p className="text-sm text-foreground/40 font-mono">
+        <p className="text-sm text-fg-tertiary font-mono">
           © {new Date().getFullYear()} Maedot Alemu
         </p>
 
@@ -25,8 +25,9 @@ export function Footer({ socialLinks, email }: FooterProps) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                data-cursor="hover"
                 className="w-8 h-8 flex items-center justify-center rounded-lg border border-border
-                           text-foreground/45 hover:text-primary hover:border-primary/40 hover:bg-primary/5
+                           text-fg-tertiary hover:text-primary hover:border-primary/40 hover:bg-primary/5
                            transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-primary"
                 aria-label={link.platform}
               >
@@ -38,7 +39,8 @@ export function Footer({ socialLinks, email }: FooterProps) {
 
         <a
           href={`mailto:${email}`}
-          className="text-sm text-foreground/40 hover:text-primary transition-colors font-mono"
+          data-cursor="hover"
+          className="text-sm text-fg-tertiary hover:text-primary transition-colors font-mono"
         >
           {email}
         </a>

@@ -42,6 +42,7 @@ export interface Project {
   features: ProjectFeature[];
   githubUrl?: string;
   liveUrl?: string;
+  isTeamProject?: boolean;
 }
 
 export interface Skill {
@@ -74,6 +75,18 @@ export interface ExtraEducation {
   url?: string;
 }
 
+export interface Achievement {
+  id: string;
+  title: string;
+  description: string;
+}
+
+export interface CodingStats {
+  leetcodeSolved: number;
+  codeforcesSolved: number;
+  yearsBuilding: number;
+}
+
 export interface PortfolioData {
   personal: PersonalInfo;
   experiences: Experience[];
@@ -81,6 +94,8 @@ export interface PortfolioData {
   skills: SkillCategory[];
   education: Education;
   extraEducation: ExtraEducation[];
+  achievements: Achievement[];
+  codingStats: CodingStats;
 }
 
 export interface NavigationSection {

@@ -1,6 +1,7 @@
 import { portfolioData } from '@/data/portfolio';
 import { Navigation } from '@/components/Navigation';
 import { HeroSection } from '@/components/sections/HeroSection';
+import { StatsSection } from '@/components/sections/StatsSection';
 import { AboutSection } from '@/components/sections/AboutSection';
 import { ExperienceSection } from '@/components/sections/ExperienceSection';
 import { ProjectsSection } from '@/components/sections/ProjectsSection';
@@ -25,12 +26,20 @@ export default function Home() {
       <Navigation sections={navigationSections} />
       <main>
         <HeroSection personal={portfolioData.personal} />
+        <StatsSection data={portfolioData} />
         <AboutSection personal={portfolioData.personal} />
         <ExperienceSection experiences={portfolioData.experiences} />
         <ProjectsSection projects={portfolioData.projects} />
         <SkillsSection skillCategories={portfolioData.skills} />
-        <EducationSection education={portfolioData.education} extraEducation={portfolioData.extraEducation} />
-        <ContactSection />
+        <EducationSection
+          education={portfolioData.education}
+          extraEducation={portfolioData.extraEducation}
+          achievements={portfolioData.achievements}
+        />
+        <ContactSection
+          email={portfolioData.personal.email}
+          githubUrl={portfolioData.personal.socialLinks.find((l) => l.platform === 'GitHub')?.url ?? ''}
+        />
       </main>
       <Footer
         socialLinks={portfolioData.personal.socialLinks}

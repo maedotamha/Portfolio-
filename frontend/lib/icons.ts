@@ -1,14 +1,15 @@
 'use client';
 
 import React from 'react';
-import { IconType } from 'react-icons';
-import { FaLinkedin, FaGithub, FaCode, FaJava, FaAws } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaCode, FaJava, FaAws, FaSitemap, FaSpider } from 'react-icons/fa';
 import {
-  SiJavascript, SiTypescript, SiPython, SiCplusplus,
-  SiReact, SiNextdotjs, SiTailwindcss, SiHtml5, SiCss,
-  SiNodedotjs, SiExpress, SiDjango, SiSpringboot,
-  SiPostgresql, SiMongodb, SiRedis, SiMysql,
-  SiGit, SiDocker, SiVercel, SiPostman,
+  SiJavascript, SiTypescript, SiPython, SiCplusplus, SiGo,
+  SiReact, SiNextdotjs, SiTailwindcss, SiHtml5, SiCss, SiUnity,
+  SiNodedotjs, SiExpress, SiDjango, SiSpringboot, SiFastapi,
+  SiPostgresql, SiMongodb, SiRedis, SiMysql, SiApachekafka, SiRabbitmq, SiNginx,
+  SiGit, SiDocker, SiVercel, SiPostman, SiJira, SiFigma,
+  SiNumpy, SiPandas, SiScikitlearn, SiLangchain, SiMlflow,
+  SiOpenai, SiGooglecloud, SiArduino, SiJsonwebtokens, SiCodeforces,
 } from 'react-icons/si';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -17,27 +18,49 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   FaCode,
   FaJava,
   FaAws,
+  FaSitemap,
+  FaSpider,
   SiJavascript,
   SiTypescript,
   SiPython,
   SiCplusplus,
+  SiGo,
   SiReact,
   SiNextdotjs,
   SiTailwindcss,
   SiHtml5,
   SiCss,
+  SiUnity,
   SiNodedotjs,
   SiExpress,
   SiDjango,
   SiSpringboot,
+  SiFastapi,
   SiPostgresql,
   SiMongodb,
   SiRedis,
   SiMysql,
+  SiApachekafka,
+  SiRabbitmq,
+  SiNginx,
   SiGit,
   SiDocker,
   SiVercel,
   SiPostman,
+  SiJira,
+  SiFigma,
+  SiNumpy,
+  SiPandas,
+  SiScikitlearn,
+  SiLangchain,
+  SiMlflow,
+  SiOpenai,
+  SiGooglecloud,
+  SiArduino,
+  SiJsonwebtokens,
+  SiCodeforces,
+  // Aliases used by existing/legacy skill data entries
+  SiOpenarchitecture: FaSitemap,
 };
 
 export function getIcon(name: string): React.ComponentType<{ className?: string }> {
