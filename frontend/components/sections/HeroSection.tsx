@@ -5,6 +5,7 @@ import { motion, type Variants } from 'framer-motion';
 import { scrollToSection } from '@/lib/scroll-utils';
 import { getIcon } from '@/lib/icons';
 import { Button } from '@/components/Button';
+import { Portrait } from '@/components/Portrait';
 import { HeroScene } from '@/components/three/HeroScene';
 import { FiArrowDown, FiMail, FiMapPin } from 'react-icons/fi';
 
@@ -34,16 +35,10 @@ export function HeroSection({ personal }: HeroSectionProps) {
       <div className="grain-overlay" />
       <div className="pointer-events-none absolute inset-0 dot-grid opacity-40" />
 
-      <div className="max-w-5xl mx-auto w-full relative z-10">
-        <motion.div variants={container} initial="hidden" animate="show">
+      <div className="max-w-6xl mx-auto w-full relative z-10">
+        <div className="grid lg:grid-cols-[1.2fr_320px] gap-10 lg:gap-16 items-center">
 
-          {/* Badge */}
-          <motion.div variants={item} className="mb-8">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border text-fg-secondary text-xs font-mono uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-              Open to opportunities
-            </div>
-          </motion.div>
+        <motion.div variants={container} initial="hidden" animate="show" className="order-2 lg:order-1">
 
           {/* Name — big mixed serif/sans statement */}
           <motion.h1
@@ -123,6 +118,17 @@ export function HeroSection({ personal }: HeroSectionProps) {
           </motion.div>
 
         </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1], delay: 0.2 }}
+          className="order-1 lg:order-2 flex justify-center lg:justify-end"
+        >
+          <Portrait name={personal.name} />
+        </motion.div>
+
+        </div>
       </div>
 
       {/* Scroll cue */}

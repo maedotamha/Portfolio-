@@ -43,18 +43,18 @@
 
 @layer base {
   :root {
-    /* Dark (default) */
-    --background: 10 10 15;
-    --elevated: 19 19 24;
-    --subtle: 28 28 36;
-    --foreground: 242 241 246;
-    --fg-secondary: 168 168 176;
-    --fg-tertiary: 74 74 85;
-    --primary: 46 144 255;
-    --primary-bright: 111 203 255;
-    --primary-foreground: 8 10 15;
-    --secondary: 255 158 68;
-    --secondary-bright: 255 189 122;
+    /* Dark (default) — obsidian + neon circuit */
+    --background: 7 8 10;
+    --elevated: 15 17 20;
+    --subtle: 22 25 29;
+    --foreground: 237 242 238;
+    --fg-secondary: 158 168 163;
+    --fg-tertiary: 78 88 84;
+    --primary: 151 255 90;
+    --primary-bright: 205 255 150;
+    --primary-foreground: 6 10 6;
+    --secondary: 178 92 255;
+    --secondary-bright: 210 150 255;
     --border: 255 255 255;
     --border-hover: 255 255 255;
     --border-alpha: 0.08;
@@ -74,34 +74,34 @@
   }
 
   .dark {
-    --background: 10 10 15;
-    --elevated: 19 19 24;
-    --subtle: 28 28 36;
-    --foreground: 242 241 246;
-    --fg-secondary: 168 168 176;
-    --fg-tertiary: 74 74 85;
-    --primary: 46 144 255;
-    --primary-bright: 111 203 255;
-    --primary-foreground: 8 10 15;
-    --secondary: 255 158 68;
-    --secondary-bright: 255 189 122;
+    --background: 7 8 10;
+    --elevated: 15 17 20;
+    --subtle: 22 25 29;
+    --foreground: 237 242 238;
+    --fg-secondary: 158 168 163;
+    --fg-tertiary: 78 88 84;
+    --primary: 151 255 90;
+    --primary-bright: 205 255 150;
+    --primary-foreground: 6 10 6;
+    --secondary: 178 92 255;
+    --secondary-bright: 210 150 255;
     --border: 255 255 255;
     --border-hover: 255 255 255;
   }
 
-  /* Light theme overrides (default state has no .dark class) */
+  /* Light theme overrides (default state has no .dark class) — warm paper + deep circuit ink */
   html:not(.dark) {
-    --background: 251 249 245;
-    --elevated: 253 251 248;
-    --subtle: 243 240 235;
-    --foreground: 15 17 21;
-    --fg-secondary: 90 92 102;
-    --fg-tertiary: 154 156 166;
-    --primary: 11 99 216;
-    --primary-bright: 45 140 255;
+    --background: 250 248 243;
+    --elevated: 253 251 247;
+    --subtle: 241 238 231;
+    --foreground: 16 20 17;
+    --fg-secondary: 86 94 88;
+    --fg-tertiary: 152 158 152;
+    --primary: 26 122 51;
+    --primary-bright: 15 148 58;
     --primary-foreground: 255 255 255;
-    --secondary: 199 92 22;
-    --secondary-bright: 224 118 42;
+    --secondary: 112 33 178;
+    --secondary-bright: 138 46 214;
     --border: 0 0 0;
     --border-hover: 0 0 0;
     --border-alpha: 0.09;

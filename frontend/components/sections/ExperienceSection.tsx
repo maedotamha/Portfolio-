@@ -3,7 +3,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { Experience } from '@/types';
 import { AnimatedSection } from '../AnimatedSection';
+import { MachineBadge } from '../MachineBadge';
 import { AnimatePresence, motion } from 'framer-motion';
+
+const isMachineLearningRole = (exp: Experience) =>
+  /\b(ml|ai)\b/i.test(exp.role) || exp.technologies?.some((t) => /\b(ml|ai|machine learning)\b/i.test(t));
 
 interface ExperienceSectionProps {
   experiences: Experience[];
@@ -93,7 +97,8 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
                       aria-expanded={isActive}
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                        <h3 className={`font-medium transition-colors ${isActive ? 'text-primary' : 'text-foreground'}`}>
+                        <h3 className={`flex items-center gap-2 font-medium transition-colors ${isActive ? 'text-primary' : 'text-foreground'}`}>
+                          {isMachineLearningRole(exp) && <MachineBadge size={26} />}
                           {exp.role} <span className="text-fg-tertiary font-normal">— {exp.company}</span>
                         </h3>
                         <span className="text-xs font-mono text-fg-tertiary shrink-0">{exp.duration}</span>
@@ -109,7 +114,7 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
                           transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
                           className="overflow-hidden"
                         >
-                          <div className="px-5 pb-5 pt-4 border-t border-border">
+                          <div className="relative px-5 pb-5 pt-4 border-t border-border">
                             {exp.location && (
                               <p className="text-xs text-fg-tertiary font-mono mb-3">{exp.location}</p>
                             )}
