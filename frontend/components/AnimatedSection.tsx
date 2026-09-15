@@ -7,12 +7,14 @@ interface AnimatedSectionProps {
   children: ReactNode;
   animation?: 'fadeIn' | 'slideUp' | 'slideIn';
   delay?: number;
+  className?: string;
 }
 
 export function AnimatedSection({
   children,
   animation = 'fadeIn',
   delay = 0,
+  className,
 }: AnimatedSectionProps) {
   const shouldReduceMotion = useReducedMotion();
   const [isClient, setIsClient] = useState(false);
@@ -24,7 +26,7 @@ export function AnimatedSection({
 
   // If reduced motion is preferred or not on client, render without animation
   if (!isClient || shouldReduceMotion) {
-    return <>{children}</>;
+    return className ? <div className={className}>{children}</div> : <>{children}</>;
   }
 
   const variants = {
@@ -44,6 +46,7 @@ export function AnimatedSection({
 
   return (
     <motion.div
+      className={className}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: '-100px' }}

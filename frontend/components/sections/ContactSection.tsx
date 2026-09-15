@@ -99,41 +99,38 @@ export function ContactSection({ email, githubUrl }: ContactSectionProps) {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
           {/* Left — copy */}
-          <AnimatedSection animation="slideIn" delay={0.1}>
-            <div className="lg:col-span-2">
-              <p className="text-lg text-fg-secondary leading-relaxed mb-6">
-                Have a project in mind or just want to say hello? I&apos;d love to hear from you.
-              </p>
-              <div className="space-y-3">
-                <a
-                  href={`mailto:${email}`}
-                  data-cursor="hover"
-                  className="flex items-center gap-3 text-sm text-fg-secondary hover:text-primary transition-colors group"
-                >
-                  <span className="w-8 h-8 rounded-lg bg-primary/8 border border-primary/15 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
-                    <FiMail className="w-3.5 h-3.5 text-primary" />
-                  </span>
-                  {email}
-                </a>
-                <a
-                  href={githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-cursor="hover"
-                  className="flex items-center gap-3 text-sm text-fg-secondary hover:text-primary transition-colors group"
-                >
-                  <span className="w-8 h-8 rounded-lg bg-primary/8 border border-primary/15 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
-                    <FiGithub className="w-3.5 h-3.5 text-primary" />
-                  </span>
-                  {githubHandle}
-                </a>
-              </div>
+          <AnimatedSection animation="slideIn" delay={0.1} className="lg:col-span-2">
+            <p className="text-lg text-fg-secondary leading-relaxed mb-6">
+              Have a project in mind or just want to say hello? I&apos;d love to hear from you.
+            </p>
+            <div className="space-y-3">
+              <a
+                href={`mailto:${email}`}
+                data-cursor="hover"
+                className="flex items-center gap-3 text-sm text-fg-secondary hover:text-primary transition-colors group"
+              >
+                <span className="w-8 h-8 rounded-lg bg-primary/8 border border-primary/15 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
+                  <FiMail className="w-3.5 h-3.5 text-primary" />
+                </span>
+                {email}
+              </a>
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="hover"
+                className="flex items-center gap-3 text-sm text-fg-secondary hover:text-primary transition-colors group"
+              >
+                <span className="w-8 h-8 rounded-lg bg-primary/8 border border-primary/15 flex items-center justify-center group-hover:bg-primary/15 transition-colors">
+                  <FiGithub className="w-3.5 h-3.5 text-primary" />
+                </span>
+                {githubHandle}
+              </a>
             </div>
           </AnimatedSection>
 
           {/* Right — form */}
-          <AnimatedSection animation="slideUp" delay={0.15}>
-            <div className="lg:col-span-3">
+          <AnimatedSection animation="slideUp" delay={0.15} className="lg:col-span-3">
               <div className="glow-card p-6 md:p-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -202,7 +199,6 @@ export function ContactSection({ email, githubUrl }: ContactSectionProps) {
                   </Button>
                 </form>
               </div>
-            </div>
           </AnimatedSection>
         </div>
       </div>
