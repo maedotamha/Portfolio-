@@ -8,6 +8,7 @@ export interface SocialLink {
 export interface PersonalInfo {
   name: string;
   title: string;
+  tagline: string;
   description: string;
   email: string;
   phone: string;

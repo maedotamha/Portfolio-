@@ -59,13 +59,13 @@ export function HeroSection({ personal }: HeroSectionProps) {
             {personal.title}
           </motion.p>
 
-          {/* Description */}
+          {/* Tagline */}
           <motion.p
             variants={item}
             className="text-fg-secondary leading-relaxed mb-8 max-w-2xl"
             style={{ fontSize: 'var(--text-lg)' }}
           >
-            {personal.description}
+            {personal.tagline}
           </motion.p>
 
           {/* Contact chips */}

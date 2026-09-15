@@ -4,6 +4,7 @@ export const portfolioData: PortfolioData = {
   personal: {
     name: 'Maedot Alemu',
     title: 'Software Engineer | Full Stack & ML/AI Developer',
+    tagline: "I build full-stack systems end to end — then push them further with applied machine learning and agentic AI.",
     description: 'I approach every build algorithmically — breaking a problem down before I touch code, then weighing it from multiple angles (architecture, data, user, and delivery) before committing to a path. Full-stack software engineer with hands-on experience building scalable, production-shaped systems, and, more recently, applied machine learning: end-to-end model pipelines, data analysis, and agentic AI workflows.',
     email: 'maedotamha@gmail.com',
     phone: '+251966017715',

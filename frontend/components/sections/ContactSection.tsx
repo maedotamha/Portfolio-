@@ -97,10 +97,10 @@ export function ContactSection({ email, githubUrl }: ContactSectionProps) {
           </h2>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
           {/* Left — copy */}
           <AnimatedSection animation="slideIn" delay={0.1}>
-            <div className="md:col-span-2">
+            <div className="lg:col-span-2">
               <p className="text-lg text-fg-secondary leading-relaxed mb-6">
                 Have a project in mind or just want to say hello? I&apos;d love to hear from you.
               </p>
@@ -133,7 +133,7 @@ export function ContactSection({ email, githubUrl }: ContactSectionProps) {
 
           {/* Right — form */}
           <AnimatedSection animation="slideUp" delay={0.15}>
-            <div className="md:col-span-3">
+            <div className="lg:col-span-3">
               <div className="glow-card p-6 md:p-8">
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

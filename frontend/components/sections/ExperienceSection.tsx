@@ -4,10 +4,13 @@ import { useEffect, useRef, useState } from 'react';
 import { Experience } from '@/types';
 import { AnimatedSection } from '../AnimatedSection';
 import { MachineBadge } from '../MachineBadge';
+import { RoleBadge } from '../RoleBadge';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const isMachineLearningRole = (exp: Experience) =>
   /\b(ml|ai)\b/i.test(exp.role) || exp.technologies?.some((t) => /\b(ml|ai|machine learning)\b/i.test(t));
+const isFullStackRole = (exp: Experience) => /full[\s-]?stack/i.test(exp.role);
+const isFrontendRole = (exp: Experience) => /front[\s-]?end/i.test(exp.role);
 
 interface ExperienceSectionProps {
   experiences: Experience[];
@@ -99,6 +102,8 @@ export function ExperienceSection({ experiences }: ExperienceSectionProps) {
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                         <h3 className={`flex items-center gap-2 font-medium transition-colors ${isActive ? 'text-primary' : 'text-foreground'}`}>
                           {isMachineLearningRole(exp) && <MachineBadge size={26} />}
+                          {isFullStackRole(exp) && <RoleBadge variant="fullstack" size={26} />}
+                          {isFrontendRole(exp) && <RoleBadge variant="frontend" size={26} />}
                           {exp.role} <span className="text-fg-tertiary font-normal">— {exp.company}</span>
                         </h3>
                         <span className="text-xs font-mono text-fg-tertiary shrink-0">{exp.duration}</span>
